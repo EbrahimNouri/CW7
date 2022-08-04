@@ -1,8 +1,9 @@
-package repository;
+package repository.impl;
 
 import entity.UserAccount;
+import repository.BaseRepository;
 
-public class UserRepositoryImpl implements BaseRepository <UserAccount, String> {
+public class UserRepositoryImpl implements BaseRepository<UserAccount, String> {
 
 
     @Override

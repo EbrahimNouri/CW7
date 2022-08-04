@@ -20,4 +20,14 @@ public class UserAccountServicesImpl implements UserAccountServices {
             return price;
         }
     }
+
+    @Override
+    public void login() {
+
+    }
+
+    @Override
+    public void signUp() {
+
+    }
 }
