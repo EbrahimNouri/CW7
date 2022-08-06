@@ -1,5 +1,7 @@
 package entity;
 
+
+
 import java.util.Objects;
 
 public class Books {
@@ -7,10 +9,10 @@ public class Books {
     private String title;
     private String text;
     private boolean isBorrowed;
-    private String category;
+    private Category category;
     private double price;
 
-    public Books(long id, String title, String text, boolean isBorrowed, String category, double price) {
+    public Books(long id, String title, String text, boolean isBorrowed, Category category, double price) {
         this.id = id;
         this.title = title;
         this.text = text;
@@ -51,12 +53,12 @@ public class Books {
         isBorrowed = borrowed;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(Category category) {
+        this.category =  category;
     }
 
     public double getPrice() {

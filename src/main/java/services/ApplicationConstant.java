@@ -1,6 +1,8 @@
 package services;
 
 import entity.UserAccount;
+import repository.UserRepository;
+import repository.impl.UserRepositoryImpl;
 import services.impl.UserAccountServicesImpl;
 
 import java.sql.Connection;
@@ -16,4 +18,9 @@ public class ApplicationConstant {
     public static Connection getConnection() {return connection;}
     public static Scanner input = new Scanner(System.in);
     public  static Scanner getInput(){return input;}
+    private static UserRepositoryImpl userRepository = new  UserRepositoryImpl();
+
+    public static UserRepositoryImpl getUserRepository() {
+        return userRepository;
+    }
 }

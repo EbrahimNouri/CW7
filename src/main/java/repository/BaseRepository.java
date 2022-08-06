@@ -1,9 +1,9 @@
 package repository;
 
-public interface BaseRepository <T, V> {
+public interface BaseRepository <T> {
     T create(T t);
     T read();
     T update(T t);
-    void delete(T t);
-    T findByValue(V v);
+   default void delete(T t){}
+
 }
