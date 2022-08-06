@@ -2,6 +2,8 @@ package services;
 
 import entity.UserAccount;
 import repository.UserRepository;
+import repository.impl.BookRepositoryImpl;
+import repository.impl.CategoryRepositoryImpl;
 import repository.impl.UserRepositoryImpl;
 import services.impl.UserAccountServicesImpl;
 
@@ -19,8 +21,12 @@ public class ApplicationConstant {
     public static Scanner input = new Scanner(System.in);
     public  static Scanner getInput(){return input;}
     private static UserRepositoryImpl userRepository = new  UserRepositoryImpl();
+    private static  BookRepositoryImpl bookRepository = new BookRepositoryImpl();
+    private static CategoryRepositoryImpl categoryRepository = new CategoryRepositoryImpl();
 
     public static UserRepositoryImpl getUserRepository() {
         return userRepository;
     }
+    public static BookRepositoryImpl getBookRepository(){return bookRepository;}
+    public static CategoryRepositoryImpl getCategoryRepository(){return categoryRepository;}
 }

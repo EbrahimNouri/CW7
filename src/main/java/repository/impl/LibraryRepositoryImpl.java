@@ -1,6 +1,6 @@
 package repository.impl;
 
-import entity.Books;
+import entity.Book;
 import entity.Category;
 import entity.Library;
 import repository.BaseRepository;
@@ -16,7 +16,7 @@ public class LibraryRepositoryImpl implements LibraryRepository, BaseRepository<
     }
 
     @Override
-    public Library read() {
+    public Library read(Library library) {
         return null;
     }
 
@@ -37,22 +37,22 @@ public class LibraryRepositoryImpl implements LibraryRepository, BaseRepository<
     }
 
     @Override
-    public List<Books> findBooksByCategory(Category category) {
+    public List<Book> findBooksByCategory(Category category) {
         return null;
     }
 
     @Override
-    public Books findBookById(Long id) {
+    public Book findBookById(Long id) {
         return null;
     }
 
     @Override
-    public List<Books> findAllBooks() {
+    public List<Book> findAllBooks() {
         return null;
     }
 
     @Override
-    public List<Books> booksBorrowed() {
+    public List<Book> booksBorrowed() {
         return null;
     }
 }

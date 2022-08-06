@@ -4,8 +4,6 @@ import entity.UserAccount;
 import repository.BaseRepository;
 import repository.UserRepository;
 
-import java.util.List;
-
 public class UserRepositoryImpl implements BaseRepository<UserAccount>, UserRepository {
 
 
@@ -16,7 +14,7 @@ public class UserRepositoryImpl implements BaseRepository<UserAccount>, UserRepo
     }
 
     @Override
-    public UserAccount read() {
+    public UserAccount read(UserAccount t) {
 
         return null;
     }

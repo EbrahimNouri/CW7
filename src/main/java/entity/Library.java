@@ -1,15 +1,14 @@
 package entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Library {
     private List<UserAccount> userList;
-    private List<Books> bookList;
+    private List<Book> bookList;
     private double allDeposite;
 
-    public Library(List<UserAccount> userList, List<Books> bookList, double allDeposite) {
+    public Library(List<UserAccount> userList, List<Book> bookList, double allDeposite) {
         this.userList = userList;
         this.bookList = bookList;
         this.allDeposite = allDeposite;
@@ -23,11 +22,11 @@ public class Library {
         this.userList = userList;
     }
 
-    public List<Books> getBookList() {
+    public List<Book> getBookList() {
         return bookList;
     }
 
-    public void setBookList(List<Books> bookList) {
+    public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
     }
 

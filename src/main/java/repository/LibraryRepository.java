@@ -1,6 +1,6 @@
 package repository;
 
-import entity.Books;
+import entity.Book;
 import entity.Category;
 
 import java.util.List;
@@ -8,10 +8,10 @@ import java.util.List;
 public interface LibraryRepository {
     void addToLibrary();
     void deleteOfLibrary();
-    List<Books> findBooksByCategory(Category category);
-    Books findBookById(Long id);
-    List<Books> findAllBooks();
-    List<Books> booksBorrowed();
+    List<Book> findBooksByCategory(Category category);
+    Book findBookById(Long id);
+    List<Book> findAllBooks();
+    List<Book> booksBorrowed();
 
 
 }
