@@ -15,18 +15,22 @@ public class UserRepositoryImpl implements BaseRepository<UserAccount>, UserRepo
     public UserAccount create(UserAccount userAccount) throws SQLException {
         String sql = """
                 insert into user_account(first_name, last_name,birth_date , user_type, username, password, is_blocked, credit, dor, borrowed_num, reserve_num, returned_num)
-                values (?, ?, (to_date)?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                values (?, ?, to_date(?,'yyy/mm/dd'), ?::user_type, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
-        ps.setString(1, userAccount.getUsertype().toString());
-        ps.setString(2, userAccount.getUsername());
-        ps.setString(3, userAccount.getPassword());
-        ps.setBoolean(4, userAccount.isBlocked());
-        ps.setDouble(5, userAccount.getCredit());
-        ps.setString(6, userAccount.getDor());
-        ps.setInt(7, userAccount.getBorrowedNum());
-        ps.setInt(8, userAccount.getReserveNum());
-        ps.setInt(9, userAccount.getReturnedNum());
+        ps.setString(1, userAccount.getFirstname());
+        ps.setString(2, userAccount.getLastName());
+        ps.setString(3,userAccount.getBirthday());
+        ps.setString(4, userAccount.getFirstname());
+        ps.setString(5, userAccount.getUsertype().toString());
+        ps.setString(6, userAccount.getUsername());
+        ps.setString(7, userAccount.getPassword());
+        ps.setBoolean(8, userAccount.isBlocked());
+        ps.setDouble(9, userAccount.getCredit());
+        ps.setString(10, userAccount.getDor());
+        ps.setInt(11, userAccount.getBorrowedNum());
+        ps.setInt(12, userAccount.getReserveNum());
+        ps.setInt(13, userAccount.getReturnedNum());
         ps.executeUpdate();
         return userAccount;
     }
