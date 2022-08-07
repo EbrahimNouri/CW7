@@ -1,7 +1,6 @@
 package repository.impl;
 
 import entity.Book;
-import entity.Category;
 import repository.BaseRepository;
 import repository.BookRepository;
 import services.ApplicationConstant;
@@ -53,6 +52,7 @@ public class BookRepositoryImpl implements BookRepository, BaseRepository<Book> 
                 id serial primary key not null,
                 title varchar(255),
                 text varchar,
+                is_borrowed bool,
                 category bigint,
                 price float)
                 """;
@@ -61,17 +61,28 @@ public class BookRepositoryImpl implements BookRepository, BaseRepository<Book> 
     }
 
     @Override
-    public void delete(Book book) {
-
+    public void delete(Book book) throws SQLException {
+        String sql = "delete from book where id = ?";
+        PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
+        ps.setLong(1, book.getId());
+        ps.executeUpdate();
     }
 
     @Override
-    public boolean changeStatus(long id) {
-        return false;
+    public boolean changeStatus(long id) throws SQLException {
+        String sql = "update book set is_borrowed = ? where id = ?";
+        PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
+        ps.setBoolean(1, !changeStatus(id));
+        ps.executeUpdate();
+        return checkStatus(id);
     }
 
     @Override
-    public boolean checkStatus(long id) {
-        return false;
+    public boolean checkStatus(long id) throws SQLException {
+        String sql = "select is_borrowed from book where id = ?";
+        PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
+        ps.setLong(1, id);
+        ResultSet rs = ps.executeQuery();
+        return rs.getBoolean(1);
     }
 }

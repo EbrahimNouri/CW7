@@ -79,7 +79,10 @@ public class CategoryRepositoryImpl implements CategoryRepository, BaseRepositor
     }
 
     @Override
-    public void delete(Category category) {
-
+    public void delete(Category category) throws SQLException {
+        String sql = "delete from category where id = ?";
+        PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
+        ps.setLong(1, category.getId());
+        ps.executeUpdate();
     }
 }

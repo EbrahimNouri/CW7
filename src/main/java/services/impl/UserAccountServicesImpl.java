@@ -53,10 +53,7 @@ public class UserAccountServicesImpl implements UserAccountServices {
 
     @Override
     public void signUp() {
-        UserAccount userAccount = new UserAccount();
-       String username = "arash";
-       if(ApplicationConstant.getUserRepository().isUsernameExist(username))
-        ApplicationConstant.getUserRepository().create(userAccount);
+
 
     }
 

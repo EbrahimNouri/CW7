@@ -7,6 +7,6 @@ public interface BaseRepository <T> {
     T read(T t) throws SQLException;
     T update(T t) throws SQLException;
 
-    default void delete(T t){}
+    default void delete(T t) throws SQLException {}
 
 }
