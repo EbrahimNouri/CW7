@@ -6,6 +6,7 @@ import entity.Library;
 import repository.BaseRepository;
 import repository.LibraryRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class LibraryRepositoryImpl implements LibraryRepository, BaseRepository<Library> {
@@ -16,9 +17,10 @@ public class LibraryRepositoryImpl implements LibraryRepository, BaseRepository<
     }
 
     @Override
-    public Library read(Library library) {
+    public Library read(Long id) throws SQLException {
         return null;
     }
+
 
     @Override
     public Library update(Library library) {

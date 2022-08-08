@@ -23,12 +23,12 @@ public class BookRepositoryImpl implements BookRepository, BaseRepository<Book> 
         return book;
     }
 
-    // TODO: 8/6/2022 add read category method for category
     @Override
-    public Book read(Book book) throws SQLException {
+    public Book read(Long id) throws SQLException {
+        Book book = null;
         String sql = "select * from book where id = ?";
         PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
-        ps.setLong(1, book.getId());
+        ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
@@ -40,6 +40,9 @@ public class BookRepositoryImpl implements BookRepository, BaseRepository<Book> 
         }
         return book;
     }
+
+    // TODO: 8/6/2022 add read category method for category
+
 
     @Override
     public Book update(Book book) {

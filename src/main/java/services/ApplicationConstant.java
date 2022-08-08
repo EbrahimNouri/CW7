@@ -1,13 +1,13 @@
 package services;
 
-import entity.UserAccount;
-import repository.UserRepository;
 import repository.impl.BookRepositoryImpl;
 import repository.impl.CategoryRepositoryImpl;
 import repository.impl.UserRepositoryImpl;
 import services.impl.UserAccountServicesImpl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ApplicationConstant {
@@ -29,4 +29,7 @@ public class ApplicationConstant {
     }
     public static BookRepositoryImpl getBookRepository(){return bookRepository;}
     public static CategoryRepositoryImpl getCategoryRepository(){return categoryRepository;}
+    public static PreparedStatement preConnection(String sql) throws SQLException {
+        return getConnection().prepareStatement(sql);
+    }
 }

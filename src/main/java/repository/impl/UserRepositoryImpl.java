@@ -1,11 +1,13 @@
 package repository.impl;
 
 import entity.UserAccount;
+import entity.Usertype;
 import repository.BaseRepository;
 import repository.UserRepository;
 import services.ApplicationConstant;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRepositoryImpl implements BaseRepository<UserAccount>, UserRepository {
@@ -15,31 +17,53 @@ public class UserRepositoryImpl implements BaseRepository<UserAccount>, UserRepo
     public UserAccount create(UserAccount userAccount) throws SQLException {
         String sql = """
                 insert into user_account(first_name, last_name,birth_date , user_type, username, password, is_blocked, credit, dor, borrowed_num, reserve_num, returned_num)
-                values (?, ?, to_date(?,'yyy/mm/dd'), ?::user_type, ?, ?, ?, ?, ?, ?, ?, ?)
+                values (?, ?, to_date(?,'yyy/mm/dd'), ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
         ps.setString(1, userAccount.getFirstname());
         ps.setString(2, userAccount.getLastName());
-        ps.setString(3,userAccount.getBirthday());
-        ps.setString(4, userAccount.getFirstname());
-        ps.setString(5, userAccount.getUsertype().toString());
-        ps.setString(6, userAccount.getUsername());
-        ps.setString(7, userAccount.getPassword());
-        ps.setBoolean(8, userAccount.isBlocked());
-        ps.setDouble(9, userAccount.getCredit());
-        ps.setString(10, userAccount.getDor());
-        ps.setInt(11, userAccount.getBorrowedNum());
-        ps.setInt(12, userAccount.getReserveNum());
-        ps.setInt(13, userAccount.getReturnedNum());
+        ps.setString(3, userAccount.getBirthday());
+        ps.setString(4, userAccount.getUsertype().toString());
+        ps.setString(5, userAccount.getUsername());
+        ps.setString(6, userAccount.getPassword());
+        ps.setBoolean(7, userAccount.isBlocked());
+        ps.setDouble(8, userAccount.getCredit());
+        ps.setString(9, userAccount.getDor());
+        ps.setInt(10, userAccount.getBorrowedNum());
+        ps.setInt(11, userAccount.getReserveNum());
+        ps.setInt(12, userAccount.getReturnedNum());
         ps.executeUpdate();
         return userAccount;
     }
 
     @Override
-    public UserAccount read(UserAccount t) {
+    public UserAccount read(Long id) throws SQLException {
+        UserAccount userAccount = new UserAccount();
+        String sql = "select * from user_account where id = ?";
+        PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
+        ps.setLong(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            userAccount.setId(id);
+            userAccount.setFirstname(rs.getString(2));
+            userAccount.setLastName(rs.getString(3));
+            userAccount.setBirthday(rs.getString(4));
+            Usertype usertype = Usertype.valueOf(rs.getString(5));
+            userAccount.setUsertype(usertype);
+            userAccount.setUsername(rs.getString(6));
+            userAccount.setPassword(rs.getString(7));
+            userAccount.setBlocked(rs.getBoolean(8));
+            userAccount.setCredit(rs.getDouble(9));
+            userAccount.setDor(rs.getString(10));
+            userAccount.setBorrowedNum(rs.getInt(11));
+            userAccount.setReserveNum(rs.getInt(12));
+            userAccount.setReturnedNum(rs.getInt(13));
+        }
 
-        return null;
+
+        return userAccount;
     }
+
 
     @Override
     public UserAccount update(UserAccount userAccount) {
@@ -120,7 +144,7 @@ public class UserRepositoryImpl implements BaseRepository<UserAccount>, UserRepo
                 first_name varchar(255),
                 last_name varchar(255),
                 birth_date date,
-                user_type user_type,
+                user_type varchar(63),
                 username varchar(255),
                 password varchar(255),
                 is_blocked varchar(255),

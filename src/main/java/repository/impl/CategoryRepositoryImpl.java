@@ -31,10 +31,11 @@ public class CategoryRepositoryImpl implements CategoryRepository, BaseRepositor
     }
 
     @Override
-    public Category read(Category category) throws SQLException {
+    public Category read(Long id) throws SQLException {
+        Category category = null;
         String sql = "select * from category where id = ?";
         PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
-        ps.setLong(1,category.getId());
+        ps.setLong(1,id);
         ResultSet rs= ps.executeQuery();
         if(rs.next()){
             category.setId(rs.getLong(1));
@@ -42,6 +43,7 @@ public class CategoryRepositoryImpl implements CategoryRepository, BaseRepositor
         }
         return category;
     }
+
 
     @Override
     public Category update(Category category) throws SQLException {
