@@ -15,7 +15,7 @@ public class Main {
         ApplicationConstant.getConnection();
         BookRepositoryImpl.createTable();
         CategoryRepositoryImpl.creatTable();
-        UserRepositoryImpl.creatTable();
+//        UserRepositoryImpl.creatTable();
 
         //Category category = new Category(1, "science");
         //Book book = new Book(1, "teory", "this text is teory", false, category, 6.5);
