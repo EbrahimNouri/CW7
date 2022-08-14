@@ -24,8 +24,8 @@ public class BookRepositoryImpl implements BookRepository, BaseRepository<Book> 
     }
 
     @Override
-    public Book read(Long id) throws SQLException {
-        Book book = null;
+    public Book read(Book book) throws SQLException {
+        long id = book.getId();
         String sql = "select * from book where id = ?";
         PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
         ps.setLong(1, id);
@@ -75,7 +75,7 @@ public class BookRepositoryImpl implements BookRepository, BaseRepository<Book> 
     public boolean changeStatus(long id) throws SQLException {
         String sql = "update book set is_borrowed = ? where id = ?";
         PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
-        ps.setBoolean(1, !changeStatus(id));
+        ps.setBoolean(1, !checkStatus(id));
         ps.executeUpdate();
         return checkStatus(id);
     }

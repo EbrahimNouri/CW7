@@ -6,6 +6,8 @@ import services.ApplicationConstant;
 import services.UserAccountServices;
 import services.UserContext;
 
+import java.sql.SQLException;
+
 public class UserAccountServicesImpl implements UserAccountServices {
 
     @Override
@@ -25,7 +27,7 @@ public class UserAccountServicesImpl implements UserAccountServices {
     }
 
     @Override
-    public void login() {
+    public void login() throws SQLException {
 
 
         String inputUserName = getInput("enter user");

@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CategoryRepositoryImpl implements CategoryRepository, BaseRepository<Category> {
+public class CategoryRepositoryImpl implements CategoryRepository, BaseRepository<Category>  {
 
     public static void creatTable() throws SQLException {
         String sql = """
@@ -31,8 +31,8 @@ public class CategoryRepositoryImpl implements CategoryRepository, BaseRepositor
     }
 
     @Override
-    public Category read(Long id) throws SQLException {
-        Category category = null;
+    public Category read(Category category) throws SQLException {
+        long id = category.getId();
         String sql = "select * from category where id = ?";
         PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
         ps.setLong(1,id);
@@ -47,7 +47,7 @@ public class CategoryRepositoryImpl implements CategoryRepository, BaseRepositor
 
     @Override
     public Category update(Category category) throws SQLException {
-        String sql = "UPDATE category set id = ? , title = ?";
+        String sql = "UPDATE category set id = ? , title = ? where id = ?";
         PreparedStatement ps = ApplicationConstant.getConnection().prepareStatement(sql);
         ps.setLong(1, category.getId());
         ps.setString(2, category.getTitle());

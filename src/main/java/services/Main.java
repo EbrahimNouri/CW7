@@ -13,11 +13,11 @@ public class Main {
         ApplicationConstant.getConnection();
         BookRepositoryImpl.createTable();
         CategoryRepositoryImpl.creatTable();
-        UserRepositoryImpl.creatTable();
+
 //        UserAccount ahmad = new UserAccount(5, "ali", "babai", "1999/4/3", Usertype.STUDENT_USER, "alireza", "0123", false, 12.0, "salam", 12, 12, 12);
 //        ApplicationConstant.getUserRepository().create(ahmad);
         UserAccount userAccount;
-        ApplicationConstant.getUserRepository().read(1l);
+//        ApplicationConstant.getUserRepository().read();
 
         //Category category = new Category(1, "science");
         //Book book = new Book(1, "teory", "this text is teory", false, category, 6.5);

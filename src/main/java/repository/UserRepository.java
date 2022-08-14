@@ -1,34 +1,32 @@
 package repository;
 
 import entity.UserAccount;
-import services.ApplicationConstant;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public interface UserRepository {
-    void changePassword();
+    void changePassword(long id) throws SQLException;
 
-    UserAccount findById(long id);
+    UserAccount findById(long id) throws SQLException;
 
-    UserAccount findByUsername(String username);
+    UserAccount findByUsername(String username) throws SQLException;
 
-    boolean isUsernameExist(String input);
+    boolean isUsernameExist(String input) throws SQLException;
 
-    void createTable();
+    void createTable() throws SQLException;
 
-    boolean Blocked();
+    boolean Blocked(UserAccount userAccount) throws SQLException;
 
-    boolean checkCredit(double price);
+    Double checkCredit(Long id) throws SQLException;
 
-    void chargeCredit(double charge);
+    void updateCredit(UserAccount userAccount,  double charge) throws SQLException;
 
-    double updateCredit(double price);
 
-    int noBorrowed(long id);
+    int noBorrowed(long id) throws SQLException;
 
-    int noReserved(long id);
+    int noReserved(long id) throws SQLException;
 
-    int noReturned(long id);
+    int noReturned(long id) throws SQLException;
     void creatUserType() throws SQLException;
+
 }
